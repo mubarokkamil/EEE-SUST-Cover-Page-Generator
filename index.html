@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <!-- === SEO: Title & Description === -->
+  <title>SUST EEE Cover Page Generator | Official Tool</title>
+  <meta name="description" content="Free tool for SUST EEE students to generate official assignment, lab report, and project cover pages instantly in DOCX format.">
+  <meta name="keywords" content="SUST EEE, Cover Page Generator, SUST Assignment Cover, Lab Report Cover SUST, Shahjalal University EEE, Project Report Cover">
+  <meta name="author" content="Mubarok Hossen Kamil">
+  <meta name="robots" content="index, follow">
+  
+  <!-- === SEO: Canonical URL (Prevents duplicate content issues) === -->
+  <link rel="canonical" href="https://mubarokkamil.github.io/EEE-SUST-Cover-Page-Generator/" />
+
+  <!-- === Google Analytics 4 (GTags) === -->
+  <!-- REPLACE 'G-YOUR_ID_HERE' WITH YOUR ACTUAL MEASUREMENT ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_ID_HERE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-YOUR_ID_HERE');
+  </script>
+
+  <!-- === SEO: Open Graph (Facebook/LinkedIn) === -->
+  <meta property="og:title" content="SUST EEE Cover Page Generator">
+  <meta property="og:description" content="Instantly generate official EEE assignment, lab report, and project cover pages.">
+  <meta property="og:image" content="https://mubarokkamil.github.io/EEE-SUST-Cover-Page-Generator/sust-eee_logo.png">
+  <meta property="og:url" content="https://mubarokkamil.github.io/EEE-SUST-Cover-Page-Generator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SUST EEE Generator">
+
+  <!-- === SEO: Twitter Card === -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SUST EEE Cover Page Generator">
+  <meta name="twitter:description" content="Generate official EEE cover pages in seconds.">
+  <meta name="twitter:image" content="https://mubarokkamil.github.io/EEE-SUST-Cover-Page-Generator/sust-eee_logo.png">
+
+  <!-- === SEO: Structured Data (Schema.org) === -->
+  <!-- This helps Google understand this is a Software Application -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "SUST EEE Cover Page Generator",
+    "url": "https://mubarokkamil.github.io/EEE-SUST-Cover-Page-Generator/",
+    "description": "A tool for students of EEE, SUST to generate official cover pages for assignments and lab reports.",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "author": {
+      "@type": "Person",
+      "name": "Mubarok Hossen Kamil"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "BDT"
+    }
+  }
+  </script>
+
+  <!-- Academic Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sust-navy: #0A2647;
+      --sust-blue: #003366;
+      --sust-gold: #D4AF37;
+      --border: #cbd5e1;
+      --success: #2d6a4f;
+      --error: #9B1D41;
+      --ilovepdf-green: #28a745;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: #f5f7fa;
+      padding: 1rem;
+      line-height: 1.6;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hidden { display: none !important; }
+    
+    .page-container {
+      max-width: 850px;
+      width: 100%;
+      margin: auto;
+      background: white;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow: 0 12px 35px rgba(10, 38, 71, 0.12);
+    }
+    
+    /* === Header === */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #e2e8f0;
+      background-color: #fdfdfd;
+    }
+    .header-logo { width: 70px; height: auto; flex-shrink: 0; }
+    .header-text { text-align: right; color: var(--sust-navy); }
+    .header-text h1 { font-family: 'EB Garamond', Georgia, serif; font-size: 1.5rem; font-weight: 600; margin: 0; }
+    .header-text p { font-size: 0.9rem; opacity: 0.9; margin: 0; }
+
+    /* === Landing Page === */
+    .landing-main { text-align: center; padding: 3rem 2rem; }
+    .landing-main h2 { font-family: 'EB Garamond', serif; font-size: 2rem; color: var(--sust-navy); margin-bottom: 0.5rem; }
+    .landing-main p { font-size: 1rem; color: #4a5568; max-width: 600px; margin: 0 auto 2.5rem auto; }
+    
+    .selection-grid { 
+      display: grid; 
+      grid-template-columns: 1fr; 
+      gap: 1rem; 
+    }
+
+    .selection-box { 
+      cursor: pointer; 
+      display: flex; 
+      flex-direction: column;
+      justify-content: center;
+      padding: 1.5rem; 
+      background-color: #f8fafc; 
+      border: 2px solid var(--border); 
+      border-radius: 0.75rem; 
+      color: var(--sust-blue); 
+      transition: all 0.3s ease; 
+      text-align: left;
+    }
+    .selection-box:hover { border-color: var(--sust-gold); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15); background-color: #fff; }
+    .selection-box h3 { font-family: 'EB Garamond', serif; font-size: 1.25rem; margin-bottom: 0.25rem; }
+    .selection-box span { font-size: 0.85rem; color: #4a5568; }
+
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.5rem; width: fit-content;}
+    .badge-ind { background: #e0f2fe; color: #0369a1; }
+    .badge-grp { background: #fef3c7; color: #92400e; }
+
+    /* === Generator Page === */
+    .generator-main { padding: 2.5rem 1.5rem; }
+    .generator-main h3 { font-family: 'EB Garamond', serif; font-size: 1.75rem; color: var(--sust-navy); text-align: center; margin-bottom: 2rem; font-weight: 600; }
+    .form-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+    label { display: block; margin-bottom: 0.4rem; font-weight: 500; color: #2d3748; font-size: 0.9rem; }
+    input { width: 100%; padding: 0.8rem 1rem; border: 2px solid var(--border); border-radius: 0.6rem; font-size: 0.95rem; background: #fdfdfd; transition: all 0.3s ease; }
+    input:focus { outline: none; border-color: var(--sust-gold); box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1); background: white; }
+    
+    /* Group Member Inputs */
+    .group-members-container {
+        grid-column: 1 / -1;
+        background: #fffbeb;
+        border: 1px solid #fcd34d;
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+    }
+    .member-input-row { margin-bottom: 0.75rem; }
+    
+    .field-group { padding: 1.5rem; background: #f9fbfc; border-radius: 0.875rem; border: 1.5px dashed var(--border); margin-top: 1.5rem; opacity: 0; max-height: 0; overflow: hidden; transition: all 0.4s ease-in-out; visibility: hidden; }
+    .field-group.visible { opacity: 1; max-height: 800px; border-style: solid; border-color: var(--sust-gold); background: #fefef9; visibility: visible; }
+    
+    button { width: 100%; background: var(--sust-blue); color: white; padding: 1rem; border: none; border-radius: 0.75rem; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; margin-top: 2rem; }
+    button:hover:not(:disabled) { background: #002b55; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 51, 102, 0.25); }
+    
+    #status { margin-top: 1rem; text-align: center; font-weight: 500; padding: 1rem; border-radius: 0.5rem; }
+
+    .converter-container {
+        margin-top: 2rem; background-color: #f1f5f9; border: 1px solid #cbd5e1;
+        border-radius: 0.75rem; padding: 1.25rem; text-align: center;
+        display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+    }
+    .converter-btn { background-color: var(--ilovepdf-green); color: white; text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; transition: background-color 0.2s; font-size: 0.95rem; }
+    .converter-btn:hover { background-color: #218838; }
+    
+    .page-footer { text-align: center; padding: 2rem 1rem; color: #64748b; font-size: 0.8rem; }
+    #backButton { cursor: pointer; display: inline-block; margin-top: 1.5rem; color: var(--sust-blue); text-decoration: underline;}
+
+    /* Responsive */
+    @media (min-width: 640px) {
+      .selection-grid { grid-template-columns: 1fr 1fr; }
+      .form-grid { grid-template-columns: 1fr 1fr; }
+      .selection-box[data-choice="project"] { grid-column: span 2; }
+    }
+    @media (min-width: 768px) {
+        .selection-grid { grid-template-columns: repeat(3, 1fr); }
+        .selection-box[data-choice="project"] { grid-column: span 1; }
+        .header-logo { width: 70px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Landing Page -->
+  <div id="landingPage" class="page-container">
+    <header class="header">
+      <img src="sust-eee_logo.png" alt="SUST EEE Logo" class="header-logo">
+      <div class="header-text">
+        <h1>EEE Cover Page Generator</h1>
+        <p>Dept. of Electrical & Electronic Engineering</p>
+      </div>
+    </header>
+    <main class="landing-main">
+      <h2>Select Document Type</h2>
+      <p>Choose the specific template for your submission.</p>
+            
+      <div class="selection-grid">
+        <!-- Individual Lab -->
+        <div class="selection-box" data-choice="lab" data-type="individual">
+          <div class="badge badge-ind">Individual</div>
+          <h3>Lab Report</h3>
+          <span>For standard single-student experiments.</span>
+        </div>
+        
+        <!-- Group Lab -->
+        <div class="selection-box" data-choice="group-lab" data-type="group">
+          <div class="badge badge-grp">Group</div>
+          <h3>Group Lab Report</h3>
+          <span>For group experiments (Multiple Reg No).</span>
+        </div>
+
+        <!-- Individual Assignment -->
+        <div class="selection-box" data-choice="assignment" data-type="individual">
+          <div class="badge badge-ind">Individual</div>
+          <h3>Assignment</h3>
+          <span>Theoretical courses (Single Student).</span>
+        </div>
+
+        <!-- Group Assignment -->
+        <div class="selection-box" data-choice="group-assignment" data-type="group">
+          <div class="badge badge-grp">Group</div>
+          <h3>Group Assignment</h3>
+          <span>Theoretical courses (Multiple Reg No).</span>
+        </div>
+
+        <!-- Project Report -->
+        <div class="selection-box" data-choice="project" data-type="group">
+          <div class="badge badge-grp">Group/Individual</div>
+          <h3>Project Report</h3>
+          <span>For semester projects or thesis reports.</span>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Generator Page -->
+  <div id="generatorPage" class="page-container hidden">
+    <header class="header">
+      <img src="sust-eee_logo.png" alt="SUST EEE Logo" class="header-logo">
+      <div class="header-text">
+        <h1>EEE Cover Page Generator</h1>
+        <p>Dept. of Electrical & Electronic Engineering</p>
+      </div>
+    </header>
+    <main class="generator-main">
+      <h3 id="formTitle">Enter Details</h3>
+      <form id="dataForm">
+        <input type="hidden" id="templateDocxFile" value="">
+        <input type="hidden" id="Dept_Name" value="Electrical and Electronic Engineering">
+
+        <div class="form-grid">
+          <div><label for="Course_Code">Course Code</label><input type="text" id="Course_Code" required placeholder="e.g. EEE 322"></div>
+          <div><label for="Course_Title">Course Title</label><input type="text" id="Course_Title" required placeholder="e.g. Digital Signal Processing"></div>
+          
+          <!-- Teacher Inputs -->
+          <div>
+            <label for="Course_Teacher">Course Teacher</label>
+            <input type="text" id="Course_Teacher" list="teacher-list" required placeholder="Select or type name">
+            <datalist id="teacher-list">
+                <option value="Dr. Ifte Khairul Amin">
+                <option value="Dr. Md Rasedujjaman">
+                <option value="Dr. Mohammad Kamruzzaman Khan Prince">
+                <option value="Arif Ahammad">
+                <option value="Md. Shariful Islam">
+                <option value="Mohona Das Gupta">
+                <option value="Naima Sultana Alam Supti">
+                <option value="Md. Kabir Hasan">
+                <option value="AFSHANA BEGUM">
+                <option value="Md. Tasfiq Rahman">
+                <option value="Myen Uddin">
+            </datalist>
+          </div>
+
+          <div>
+            <label for="Course_Teacher_Details">Teacher Designation</label>
+            <input type="text" id="Course_Teacher_Details" list="designation-list" required placeholder="Select or type designation">
+            <datalist id="designation-list">
+                <option value="Professor, Dept. of EEE, SUST">
+                <option value="Associate Professor, Dept. of EEE, SUST">
+                <option value="Assistant Professor, Dept. of EEE, SUST">
+                <option value="Lecturer, Dept. of EEE, SUST">
+            </datalist>
+          </div>
+
+          <!-- === INDIVIDUAL SECTION === -->
+          <div id="singleStudentSection" style="display:contents;">
+            <div><label for="Reg_No">Registration No.</label><input type="text" id="Reg_No" placeholder="e.g. 2020331024"></div>
+            <div><label for="Name">Student Name</label><input type="text" id="Name" placeholder="e.g. Mohammad"></div>
+          </div>
+
+          <!-- === GROUP / PROJECT SECTION === -->
+          <div id="groupSection" class="group-members-container hidden">
+             <label for="memberCount">How many members are in your group?</label>
+             <input type="number" id="memberCount" min="1" max="10" placeholder="Enter number (e.g. 4)" style="margin-bottom: 1rem;">
+             <div id="dynamicMemberInputs"></div>
+          </div>
+          
+          <div>
+              <label for="Submission_Date">Date of Submission</label>
+              <input type="date" id="Submission_Date" required>
+          </div>
+        </div>
+
+        <!-- === DYNAMIC FIELDS === -->
+        <div id="labFields" class="field-group">
+          <div class="form-grid">
+            <div><label for="Exp_No">Experiment No.</label><input type="text" id="Exp_No" placeholder="e.g. 01"></div>
+            <div><label for="Group_No">Group No</label><input type="text" id="Group_No" placeholder="e.g. Group A"></div>
+            <div style="grid-column: 1 / -1;"><label for="Exp_Name">Experiment Name</label><input type="text" id="Exp_Name" placeholder="e.g. Study of RC Circuit"></div>
+          </div>
+        </div>
+
+        <div id="assignmentFields" class="field-group">
+            <div class="form-grid">
+                <div style="grid-column: 1 / -1;">
+                    <label for="Assignment_Name">Assignment Title</label>
+                    <input type="text" id="Assignment_Name" placeholder="e.g. Assignment on Fourier Transform">
+                </div>
+            </div>
+        </div>
+
+        <div id="projectFields" class="field-group">
+            <div class="form-grid">
+                <div style="grid-column: 1 / -1;">
+                    <label for="Project_Name">Project Title</label>
+                    <input type="text" id="Project_Name" placeholder="e.g. Design and Implementation of a Smart Grid">
+                </div>
+            </div>
+        </div>
+        
+        <button type="submit" id="generateDocxButton">Download Cover Page (.docx)</button>
+      </form>
+      
+      <div id="status"></div>
+
+      <div class="converter-container">
+        <p style="margin:0; font-weight:500; color:#334155;">Need PDF format?</p>
+        <a href="https://www.ilovepdf.com/word_to_pdf" target="_blank" rel="noopener noreferrer" class="converter-btn">Convert DOCX to PDF (Online)</a>
+      </div>
+      
+      <p style="text-align:center;"><a id="backButton">← Back to selection</a></p>
+    </main>
+  </div>
+  
+ <footer class="page-footer">
+    <p>Developed by <strong>Mubarok Hossen Kamil</strong> • EEE, SUST • Batch 2022</p>
+</footer>
+
+  <!-- Libraries -->
+  <script src="https://unpkg.com/pizzip@3.1.7/dist/pizzip.js"></script>
+  <script src="https://unpkg.com/docxtemplater@3.30.1/build/docxtemplater.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const landingPage = document.getElementById('landingPage');
+      const generatorPage = document.getElementById('generatorPage');
+      const choiceButtons = document.querySelectorAll('.selection-box');
+      const backButton = document.getElementById('backButton');
+      
+      const form = document.getElementById('dataForm');
+      const hiddenTemplateDocxInput = document.getElementById('templateDocxFile');
+      const formTitle = document.getElementById('formTitle');
+      
+      const labFields = document.getElementById('labFields');
+      const assignmentFields = document.getElementById('assignmentFields');
+      const projectFields = document.getElementById('projectFields');
+      const singleStudentSection = document.getElementById('singleStudentSection');
+      const groupSection = document.getElementById('groupSection');
+      const memberCountInput = document.getElementById('memberCount');
+      const dynamicMemberInputs = document.getElementById('dynamicMemberInputs');
+      const status = document.getElementById('status');
+      const generateDocxButton = document.getElementById('generateDocxButton');
+
+      // --- Member Inputs ---
+      memberCountInput.addEventListener('input', (e) => {
+          const count = parseInt(e.target.value);
+          dynamicMemberInputs.innerHTML = ''; 
+          if(count && count > 0) {
+              for(let i = 1; i <= count; i++) {
+                  const div = document.createElement('div');
+                  div.className = 'member-input-row';
+                  div.innerHTML = `
+                    <label style="font-size:0.85rem; color:#666;">Member ${i} Reg. No.</label>
+                    <input type="text" class="group-reg-input" placeholder="e.g. 20203310XX" required>
+                  `;
+                  dynamicMemberInputs.appendChild(div);
+              }
+          }
+      });
+
+      // --- View Logic ---
+      const showGenerator = (choice, type) => {
+        form.reset();
+        status.innerHTML = '';
+        status.style.backgroundColor = '';
+        dynamicMemberInputs.innerHTML = '';
+        
+        labFields.classList.remove('visible');
+        assignmentFields.classList.remove('visible');
+        projectFields.classList.remove('visible');
+        
+        if(type === 'group') {
+            singleStudentSection.style.display = 'none';
+            document.getElementById('Reg_No').required = false;
+            document.getElementById('Name').required = false;
+            groupSection.classList.remove('hidden');
+            memberCountInput.required = true;
+        } else {
+            singleStudentSection.style.display = 'contents';
+            document.getElementById('Reg_No').required = true;
+            document.getElementById('Name').required = true;
+            groupSection.classList.add('hidden');
+            memberCountInput.required = false;
+        }
+
+        switch(choice) {
+            case 'lab':
+                hiddenTemplateDocxInput.value = 'lab-template.docx';
+                labFields.classList.add('visible');
+                formTitle.textContent = "Individual Lab Report Details";
+                break;
+            case 'group-lab':
+                hiddenTemplateDocxInput.value = 'Grouped-Lab-template.docx';
+                labFields.classList.add('visible');
+                formTitle.textContent = "Group Lab Report Details";
+                break;
+            case 'assignment':
+                hiddenTemplateDocxInput.value = 'Assignment-template.docx';
+                assignmentFields.classList.add('visible');
+                formTitle.textContent = "Individual Assignment Details";
+                break;
+            case 'group-assignment':
+                hiddenTemplateDocxInput.value = 'Grouped-Assignment-template.docx';
+                assignmentFields.classList.add('visible');
+                formTitle.textContent = "Group Assignment Details";
+                break;
+            case 'project':
+                hiddenTemplateDocxInput.value = 'Project-report-template.docx';
+                projectFields.classList.add('visible'); 
+                formTitle.textContent = "Project Report Details";
+                break;
+        }
+
+        landingPage.classList.add('hidden');
+        generatorPage.classList.remove('hidden');
+        window.scrollTo(0, 0);
+        
+        // Track Page View/Selection in Analytics
+        if (typeof gtag === 'function') {
+            gtag('event', 'select_template', {
+                'template_type': choice
+            });
+        }
+      };
+
+      const showLanding = () => {
+        generatorPage.classList.add('hidden');
+        landingPage.classList.remove('hidden');
+        window.scrollTo(0, 0);
+      };
+
+      choiceButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const choice = button.getAttribute('data-choice');
+          const type = button.getAttribute('data-type');
+          showGenerator(choice, type);
+        });
+      });
+
+      backButton.addEventListener('click', showLanding);
+
+      // --- Date Formatter ---
+      const formatDateString = (dateStr) => {
+        if (!dateStr) return "";
+        const parts = dateStr.split("-");
+        const year = parts[0];
+        const monthIndex = parseInt(parts[1], 10) - 1;
+        const day = parseInt(parts[2], 10);
+        const months = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+        const getOrdinal = (n) => {
+            if (n > 3 && n < 21) return 'th';
+            switch (n % 10) { case 1: return "st"; case 2: return "nd"; case 3: return "rd"; default: return "th"; }
+        };
+        return `${day}${getOrdinal(day)} ${months[monthIndex]}, ${year}`;
+      };
+
+      // --- Data Collection ---
+      const getFormData = () => {
+        const rawDate = document.getElementById('Submission_Date').value;
+        const isGroup = !groupSection.classList.contains('hidden');
+        
+        let finalData = {
+          Dept_Name: document.getElementById('Dept_Name').value,
+          Course_Code: document.getElementById('Course_Code').value.trim(),
+          Course_Title: document.getElementById('Course_Title').value.trim(),
+          Course_Teacher: document.getElementById('Course_Teacher').value.trim(),
+          Course_Teacher_Details: document.getElementById('Course_Teacher_Details').value.trim(),
+          Submission_Date: formatDateString(rawDate),
+          Exp_No: document.getElementById('Exp_No')?.value.trim() || '',
+          Group_No: document.getElementById('Group_No')?.value.trim() || '',
+          Exp_Name: document.getElementById('Exp_Name')?.value.trim() || '',
+          Assignment_Name: document.getElementById('Assignment_Name')?.value.trim() || '',
+          Project_Name: document.getElementById('Project_Name')?.value.trim() || ''
+        };
+
+        if (isGroup) {
+            const regInputs = document.querySelectorAll('.group-reg-input');
+            let groupMembersString = "";
+            regInputs.forEach(input => {
+                if(input.value.trim() !== "") {
+                    groupMembersString += `Reg. No.: ${input.value.trim()}\n`;
+                }
+            });
+            finalData.Group_Members = groupMembersString.replace(/\n$/, "");
+            finalData.Reg_No = ""; 
+            finalData.Name = "";
+        } else {
+            finalData.Reg_No = document.getElementById('Reg_No').value.trim();
+            finalData.Name = document.getElementById('Name').value.trim();
+            finalData.Group_Members = "";
+        }
+        
+        return finalData;
+      };
+
+      const updateStatus = (message, type) => {
+        status.innerHTML = message;
+        if(type === 'success') {
+            status.style.color = 'var(--success)';
+            status.style.backgroundColor = 'rgba(45, 106, 79, 0.1)';
+        } else if (type === 'error') {
+            status.style.color = 'var(--error)';
+            status.style.backgroundColor = 'rgba(155, 29, 65, 0.1)';
+        } else {
+            status.style.color = 'var(--sust-blue)';
+            status.style.backgroundColor = '';
+        }
+      };
+
+      // --- Document Generation ---
+      generateDocxButton.addEventListener('click', async (e) => {
+        e.preventDefault(); 
+        status.innerHTML = '<em>Reading template...</em>';
+        status.style.backgroundColor = '';
+        
+        const templateFile = hiddenTemplateDocxInput.value;
+        if (!templateFile) {
+            updateStatus('Error: Template not defined.', 'error');
+            return;
+        }
+
+        const data = getFormData();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          updateStatus('Please fill in all required fields.', 'error');
+          return;
+        }
+
+        try {
+          const response = await fetch(templateFile);
+          if (!response.ok) throw new Error(`Template file '${templateFile}' not found.`);
+          
+          const content = await response.arrayBuffer();
+          const zip = new PizZip(content);
+          
+          // linebreaks:true handles \n for Group_Members
+          const doc = new docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
+          
+          doc.render(data);
+
+          const blob = doc.getZip().generate({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+          
+          let fileName = "Cover_Page.docx";
+          if(data.Reg_No) {
+             fileName = `${data.Course_Code}_${data.Reg_No}.docx`;
+          } else {
+             fileName = `${data.Course_Code}_Group_Cover.docx`;
+          }
+
+          saveAs(blob, fileName.replace(/[^a-zA-Z0-9_-]/g, '_'));
+          updateStatus('Cover page downloaded successfully!', 'success');
+
+          // === ANALYTICS TRACKING ===
+          if (typeof gtag === 'function') {
+              gtag('event', 'generate_document', {
+                  'event_category': 'Engagement',
+                  'event_label': templateFile,
+                  'course_code': data.Course_Code
+              });
+          }
+
+        } catch (error) {
+          console.error(error);
+          // === ENHANCED ERROR HANDLING ===
+          if (error.properties && error.properties.errors instanceof Array) {
+            const errorMessages = error.properties.errors.map(function (e) {
+              return e.properties.explanation;
+            }).join("<br>");
+            updateStatus('<strong>Template Error:</strong><br>' + errorMessages, 'error');
+          } else {
+            updateStatus('Error: ' + error.message, 'error');
+          }
+        }
+      });
+
+    });
+  </script>
+</body>
+</html>
